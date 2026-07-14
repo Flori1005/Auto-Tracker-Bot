@@ -1,3 +1,5 @@
+jupyter
 opencv-python
 pyserial
 numpy
+matplotlib
