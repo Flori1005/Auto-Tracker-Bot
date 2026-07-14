@@ -1,19 +1,38 @@
 import cv2
-import ipywidgets as widgets
-from IPython.display import display
+import time # Ganz oben importieren
 
-# Kamera initialisieren
-cap = cv2.VideoCapture(0)
-image_widget = widgets.Image(format='jpeg', width=640, height=480)
-display(image_widget)
+# ... (nach camera = cv2.VideoCapture(0))
+time.sleep(2) # Gib der Kamera Zeit zu initialisieren
 
-try:
+def generate_frames():
+    while True:
+        success, frame = camera.read()
+        if not success:
+            print("Kamera liefert kein Bild!") # Das sehen wir dann im Terminal
+            break
+
+
+
+def main():
+    # Kamera öffnen
+    cap = cv2.VideoCapture(0)
+    
+    print("Drücke 'q', um das Programm zu beenden.")
+    
     while True:
         ret, frame = cap.read()
-        if not ret: break
+        if not ret:
+            print("Fehler beim Abrufen des Frames")
+            break
+            
+        cv2.imshow('Kamera Test', frame)
         
-        # In JPEG konvertieren für das Widget
-        _, encoded_image = cv2.imencode('.jpg', frame)
-        image_widget.value = encoded_image.tobytes()
-except KeyboardInterrupt:
+        # 'q' zum Beenden drücken
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+            
     cap.release()
+    cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()
