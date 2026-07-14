@@ -1,0 +1,40 @@
+# -----------------------------
+# 1. Python & Environments
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# -----------------------------
+# 2. Jupyter Notebooks
+# -----------------------------
+.ipynb_checkpoints/
+
+# -----------------------------
+# 3. Projekt-Spezifisch (Computer Vision)
+# -----------------------------
+# Ignoriere Bilder und Videos, die du zum Testen nutzt, 
+# damit das Git-Repo nicht riesig wird.
+/uploads/
+/data/
+*.mp4
+*.avi
+# Wenn du ein spezifisches Testbild im Repo behalten willst, 
+# kannst du das so erzwingen (das Ausrufezeichen hebt die Regel auf):
+# !/notebooks/reference_image.jpg
+
+# -----------------------------
+# 4. OS & Editoren
+# -----------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# -----------------------------
+# 5. Arduino (Falls du die Arduino CLI nutzt)
+# -----------------------------
+build/
