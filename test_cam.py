@@ -1,17 +1,4 @@
 import cv2
-import time # Ganz oben importieren
-
-# ... (nach camera = cv2.VideoCapture(0))
-time.sleep(2) # Gib der Kamera Zeit zu initialisieren
-
-def generate_frames():
-    while True:
-        success, frame = camera.read()
-        if not success:
-            print("Kamera liefert kein Bild!") # Das sehen wir dann im Terminal
-            break
-
-
 
 def main():
     # Kamera öffnen
