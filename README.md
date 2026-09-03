@@ -7,7 +7,11 @@ Ein autonomes Fahrzeug auf Basis von Raspberry Pi und Arduino, das mittels One-S
 *   **Arduino :** Empfängt serielle Steuerbefehle und steuert die Motortreiber (L298N).
 *   **Raspberry Pi :** Führt Computer Vision via Kamera aus, berechnet Wegpunkte und sendet Navigationsbefehle an den Arduino.
 
+![How the chassis is wired and driven — Raspberry Pi sends single-letter serial commands to an Arduino Uno, which drives the rear motors, steers the front wheel, aims the pan/tilt camera, and pings the ultrasonic sensor](docs/img/hardware-architecture.png)
+
 ## 🗺️ Projektphasen & Roadmap
+
+![How it will decide where to look — zero-shot object detection and an LLM guess the target room, a scene classifier reads the current room, then the robot either navigates via SLAM or runs a coverage search](docs/img/search-logic.png)
 
 
 # Architektur-Konzept: Auto-Tracker-Bot
@@ -43,6 +47,8 @@ Die Steuerung des Fahrwerks und die Orientierung im Raum.
 Um Abhängigkeitsprobleme bei der Integration zu vermeiden, wird das Projekt schrittweise von einer stationären Logik hin zur vollautonomen Bewegung entwickelt.
 
 ### Phase 1: Stationäre Logik (Ohne Fahrgestell)
+> **Status:** in `notebooks/03_one_shot_cv.ipynb` skizziert, noch nicht in `src/main.py` verdrahtet.
+
 Das Fahrzeug verbleibt stationär. Der Fokus liegt rein auf der Software-Pipeline der Bildverarbeitung.
 1. Einlesen des Referenzbildes.
 2. Logische Bestimmung des vermuteten Zielraums.
@@ -50,11 +56,15 @@ Das Fahrzeug verbleibt stationär. Der Fokus liegt rein auf der Software-Pipelin
 4. *Output-Ziel:* Terminal-Ausgabe wie z.B. `"Suche Gabel. Bin im Arbeitszimmer. Falscher Raum."*
 
 ### Phase 2: Visuelles Tracking (Beweglicher Kopf)
+> **Status:** Hardware fertig — Pan- (Pin 11) und Tilt-Servo (Pin 12) montiert und offset-kalibriert.
+
 Erweiterung der stationären Logik um gezielte Motorsteuerung für die Kamera.
 1. Montage der AI-Kamera auf Servomotoren (Pan/Tilt).
 2. Systematisches visuelles Abscannen der unmittelbaren Umgebung, ohne die Position des Fahrzeugs zu verändern.
 
 ### Phase 3: Autonome Fahr-Logik (SLAM & Wegpunkte)
+> **Status:** Lenkung, Antrieb & Ultraschallsensor sind am Arduino verdrahtet — SLAM-Software noch nicht begonnen.
+
 Integration der Motorsteuerung für das Fahrwerk.
 1. Implementierung von SLAM für die Orientierung.
 2. Abfahren von errechneten Wegpunkten im Raum.
