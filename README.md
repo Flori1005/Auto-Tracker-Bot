@@ -1,8 +1,8 @@
-# Auto Tracker Bot 🚗👁️
+# Auto Tracker Bot 
 
 Ein autonomes Fahrzeug auf Basis von Raspberry Pi und Arduino, das mittels One-Shot-Learning über eine Kamera nach einem vorgegebenen Referenzbild sucht.
 
-## 🏗️ Systemarchitektur
+## Systemarchitektur
 
 *   **Arduino :** Empfängt serielle Steuerbefehle und steuert die Motortreiber (L298N).
 *   **Raspberry Pi :** Führt Computer Vision via Kamera aus, berechnet Wegpunkte und sendet Navigationsbefehle an den Arduino.
